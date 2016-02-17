@@ -3,17 +3,17 @@ Configuration Example for Django server deploy automation on AWS using AWS [Code
 
 ## How it works
   - We assume that we are going to deploy a **staging** environment!
-  - appspec.yml file is used to specify shell scripts to run on each step.
-  - django restframe work is used.
+  - appspec.yml file is used to specify shell scripts(scripts/*.sh) to run on each step.
+  - [django rest framework](http://www.django-rest-framework.org/) is used.
   - static files are saved in S3 on this **staging** environment.
   - we use Nginx as a web server.
   - [supervisor](http://supervisord.org/) is used to control a process
   - CodeDeploy scripts(appspec.yml, scripts/*.sh) control all of above.
 
 ## Prerequisites
-- We need a S3 bucket of this project.
-- We need a Postgres RDS server on a private subnet.
-- We need a amazon linux ec2 instance with a role of AmazonS3FullAccess to a given bucket in the same VPC of RDS server.
+- We need a S3 bucket of this project. Read more about [s3](https://aws.amazon.com/s3/)
+- We need a Postgres RDS server on a private subnet. Read more about [RDS](https://aws.amazon.com/rds/) and [VPC](https://aws.amazon.com/vpc/)
+- We need a amazon linux ec2 instance with a role of AmazonS3FullAccess to a given bucket in the same VPC of RDS server. Read more about [ec2 roles](http://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use_switch-role-ec2.html)
 
 ## Checklist
 In ```scripts/migrate.sh```
@@ -23,7 +23,7 @@ DJANGO_SETTINGS_MODULE=project.settings.staging SECRET_KEY=your-secret-here JWT_
 DJANGO_SETTINGS_MODULE=project.settings.staging SECRET_KEY=your-secret-here JWT_SECRET_KEY=your-jwt-secret-here PSQL_DB_NAME=your-db-name-here PSQL_DB_USER=your-db-user-here PSQL_DB_PASSWD=your-db-password-here PSQL_HOST=your-aws-psql-rds-server-dns-here PSQL_PORT=5432 ./manage.py migrate
 ```
 Please set SECRET_KEY, JWT_SECRET_KEY, PSQL_DB_NAMEPSQL_DB_USER, PSQL_DB_PASSWD, PSQL_HOST to your values.
-**This is just an EXAMPLE, so Please DO NOT set commit above credentials in a public repository. We MUST store those values in a non-public S3 bucket, and ec2 can access them with a given access role.**
+**This is just an EXAMPLE, so Please DO NOT commit above credentials in a public repository. We MUST store those values in a non-public S3 bucket, and ec2 can access them with a given access role.**
 
 In ```scripts/start_application.sh```
 ```bash
