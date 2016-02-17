@@ -7,7 +7,7 @@ Configuration Example for Django server deploy automation on AWS using AWS [Code
   - django restframe work is used.
   - static files are saved in S3 on this **staging** environment.
   - we use Nginx as a web server.
-  - [upervisor](http://supervisord.org/) is used to control a process
+  - [supervisor](http://supervisord.org/) is used to control a process
   - CodeDeploy scripts(appspec.yml, scripts/*.sh) control all of above.
 
 ## Prerequisites
@@ -23,7 +23,7 @@ DJANGO_SETTINGS_MODULE=project.settings.staging SECRET_KEY=your-secret-here JWT_
 DJANGO_SETTINGS_MODULE=project.settings.staging SECRET_KEY=your-secret-here JWT_SECRET_KEY=your-jwt-secret-here PSQL_DB_NAME=your-db-name-here PSQL_DB_USER=your-db-user-here PSQL_DB_PASSWD=your-db-password-here PSQL_HOST=your-aws-psql-rds-server-dns-here PSQL_PORT=5432 ./manage.py migrate
 ```
 Please set SECRET_KEY, JWT_SECRET_KEY, PSQL_DB_NAMEPSQL_DB_USER, PSQL_DB_PASSWD, PSQL_HOST to your values.
-** This is just an EXAMPLE, so Please DO NOT set commit above credentials in a public repository. We MUST store those values in a non-public S3 bucket, and ec2 can access them with a given access role.**
+**This is just an EXAMPLE, so Please DO NOT set commit above credentials in a public repository. We MUST store those values in a non-public S3 bucket, and ec2 can access them with a given access role.**
 
 In ```scripts/start_application.sh```
 ```bash
