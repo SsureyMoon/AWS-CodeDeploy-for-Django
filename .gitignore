@@ -1,0 +1,39 @@
+# common files
+.DS_Store
+
+
+.idea/
+*.pyc
+*.log
+*.py[codt]
+
+*.so
+*.egg
+*.egg-info
+staticfiles
+
+pip-log.txt
+.coverage
+.tox
+nosetests.xml
+
+
+*.key
+*.pem
+credentials/
+
+logs/*
+
+!logs/holder.txt
+
+project/media/*
+!project/media/profiles/holder.txt
+
+# npm
+
+*.min.js
+
+
+# redis
+dump.rdb
+
