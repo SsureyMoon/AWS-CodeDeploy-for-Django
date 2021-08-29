@@ -23,7 +23,7 @@ hooks:
     - location: scripts/migrate.sh
       timeout: 6000
       runas: ec2-user
-    - location: scripts/ngnix.sh
+    - location: scripts/nginx.sh
       timeout: 6000
       runas: ec2-user
   ApplicationStart:
