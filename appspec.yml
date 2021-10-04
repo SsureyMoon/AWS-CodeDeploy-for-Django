@@ -2,12 +2,12 @@ version: 0.0
 os: linux
 files:
   - source: /
-    destination: /home/ec2-user/www/project
+    destination: /home/ubuntu/www/project
 permissions:
-  - object: /home/ec2-user/www
+  - object: /home/ubuntu/www
     pattern: "**"
-    owner: ec2-user
-    group: ec2-user
+    owner: ubuntu
+    group: ubuntu
 hooks:
   BeforeInstall:
     - location: scripts/clean_instance.sh
@@ -19,18 +19,18 @@ hooks:
       runas: root
     - location: scripts/install_python_dependencies.sh
       timeout: 6000
-      runas: ec2-user
+      runas: ubuntu
     - location: scripts/migrate.sh
       timeout: 6000
-      runas: ec2-user
+      runas: ubuntu
     - location: scripts/ngnix.sh
       timeout: 6000
-      runas: ec2-user
+      runas: ubuntu
   ApplicationStart:
     - location: scripts/start_application.sh
       timeout: 6000
-      runas: ec2-user
+      runas: ubuntu
   ApplicationStop:
     - location: scripts/stop_application.sh
       timeout: 6000
-      runas: ec2-user
+      runas: ubuntu
